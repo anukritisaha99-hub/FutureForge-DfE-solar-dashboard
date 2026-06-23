@@ -228,9 +228,9 @@
   <p class="hero-sub">A stress-test of the DfE Power Purchase Agreement model. We found three design choices that shift value from supplier to school, at zero cost to HMG or schools.</p>
   <div class="hero-meta">
     <div><strong>FutureForge Consulting</strong>FLC</div>
-    <div><strong>Reference school</strong>180 kWp install</div>
-    <div><strong>Pilot scale</strong>150 schools · 25-year horizon</div>
-    <div><strong>School capex</strong>£0 across all three options</div>
+    <div><strong></strong></div>
+    <div><strong></strong></div>
+    <div><strong></strong></div>
   </div>
 </div>
 
@@ -255,7 +255,7 @@
   <p class="section-desc">Hover each card to explore.</p>
   <div class="tri-grid">
     <div class="tri-card">
-      <div class="badge badge-primary">Slide 2 · DfE Design</div>
+      <div class="badge badge-primary">DfE Design</div>
       <h3>The Existing DfE Model</h3>
       <ul>
         <li><strong>Supplier-funded install.</strong> Solar is installed, financed and maintained by a PPA provider</li>
@@ -267,7 +267,7 @@
       </ul>
     </div>
     <div class="tri-card">
-      <div class="badge badge-primary">Slide 3 · Scope of Work</div>
+      <div class="badge badge-primary">Scope of Work</div>
       <h3>What We Examined</h3>
       <ul>
         <li><strong>Pressure-tested the PPA</strong> (Primary Focus): we re-ran the example financials, checked every assumption and re-examined the stated benefits</li>
@@ -277,7 +277,7 @@
       </ul>
     </div>
     <div class="tri-card">
-      <div class="badge badge-flag">Slide 4 · Value Left on the Table</div>
+      <div class="badge badge-flag">Value Left on the Table</div>
       <h3>Where the Base Model Falls Short</h3>
       <ul>
         <li><strong>Export income goes to the supplier.</strong> Surplus solar sold to grid; income booked to supplier. A re-negotiated share returns it to schools.</li>
@@ -484,7 +484,7 @@
 
 <!-- INTERACTIVE MODEL -->
 <div class="section alt" id="model">
-  <div class="section-label">Interactive Tool</div>
+  <div class="section-label"></div>
   <div class="section-title">Adjust the assumptions, see the impact</div>
   <p class="section-desc">The base model uses conservative inputs. Move the sliders to explore what corrected assumptions deliver for a 180 kWp school.</p>
   <div class="model-wrap">
@@ -759,7 +759,7 @@
 <footer>
   <strong>FutureForge Consulting</strong> | FLC · University of Birmingham · June 2026<br>
   Built on <strong>DfE (2026)</strong>. NPV at 3.5% real (<strong>HM Treasury, 2026</strong>). Carbon factor: <strong>DESNZ (2025)</strong> 0.196 kgCO₂e/kWh. Battery costs: <strong>BloombergNEF (2025)</strong>. Export pricing: <strong>Ofgem SEG (2025)</strong>. School building condition: <strong>NAO (2023, 2026)</strong>. Yield data: <strong>Mason (2016)</strong>; <strong>European Commission PVGIS (2024)</strong>.<br><br>
-  All figures are illustrative and should be confirmed against metered site data. This dashboard is <strong>OFFICIAL SENSITIVE</strong> and is intended for authorised personnel only.
+  
   <br><br>
   <a href="https://www.ofgem.gov.uk/environmental-and-social-schemes/smart-export-guarantee-seg">Ofgem SEG</a> ·
   <a href="https://re.jrc.ec.europa.eu/pvg_tools/en/">PVGIS Tool</a> ·
@@ -873,7 +873,7 @@ new Chart(document.getElementById('monthlyGenChart'), {
   data: {
     labels: months,
     datasets: [
-      { label: 'Generation (kWh/kWp)', data: genData, backgroundColor: TEAL + 'cc', yAxisID: 'y', borderRadius: 3 },
+      { label: 'Generation (kWh/kWp)', data: genData, backgroundColor: '#90EE90', yAxisID: 'y', borderRadius: 3 },
       { label: 'School occupancy (%)', data: occupancy, type: 'line', borderColor: AMBER, backgroundColor: AMBER + '22', yAxisID: 'y1', tension: 0.4, pointRadius: 3 }
     ]
   },
