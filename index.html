@@ -742,28 +742,7 @@ Chart.defaults.font.family = "'Segoe UI', system-ui, sans-serif";
 Chart.defaults.color = '#4A6080';
 const NAVY = '#0B2545', MID = '#1C4E80', TEAL = '#0A7E8C', GREEN = '#2ECC71', AMBER = '#F39C12', RED = '#E74C3C', LIGHT = '#EEF4FB';
 
-// ── CONTEXT: value leak chart ──
-new Chart(document.getElementById('leakChart'), {
-  type: 'bar',
-  data: {
-    labels: ['Self-use saving', 'Export income (school share)', 'Export income (lost to supplier)'],
-    datasets: [
-      { label: 'Base PPA', data: [5349, 0, 1061], backgroundColor: [MID, 'rgba(0,0,0,0)', RED + 'aa'] },
-      { label: 'After fix', data: [4547, 4362, 0], backgroundColor: [TEAL, GREEN, 'rgba(0,0,0,0)'] }
-    ]
-  },
-  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' }, tooltip: { callbacks: { label: c => c.dataset.label + ': £' + c.raw.toLocaleString() } } }, scales: { x: { stacked: false }, y: { ticks: { callback: v => '£' + v.toLocaleString() } } } }
-});
 
-// ── CONTEXT: self-consumption chart ──
-new Chart(document.getElementById('selfConChart'), {
-  type: 'doughnut',
-  data: {
-    labels: ['Self-consumed (assumed)', 'Exported (assumed)', 'Reality: additional export'],
-    datasets: [{ data: [50, 25, 25], backgroundColor: [MID, TEAL, RED + 'bb'], borderWidth: 2, borderColor: '#fff' }]
-  },
-  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right' }, tooltip: { callbacks: { label: c => c.label + ': ' + c.raw + '%' } } } }
-});
 
 // ── VALUE: annual value chart ──
 new Chart(document.getElementById('annualValueChart'), {
@@ -795,18 +774,7 @@ new Chart(document.getElementById('upliftChart'), {
   options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => '+£' + c.raw + '/yr' } } }, scales: { x: { ticks: { callback: v => '+£' + v } } } }
 });
 
-// ── FIX: gain-share chart ──
-new Chart(document.getElementById('gainShareChart'), {
-  type: 'bar',
-  data: {
-    labels: ['Years 1–14 (recovery)', 'Years 15–25 (post-flip)'],
-    datasets: [
-      { label: 'Funder share (%)', data: [80, 20], backgroundColor: MID + 'cc', borderRadius: 4 },
-      { label: 'School share (%)', data: [20, 80], backgroundColor: TEAL + 'cc', borderRadius: 4 }
-    ]
-  },
-  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' } }, scales: { x: { stacked: true }, y: { stacked: true, max: 100, ticks: { callback: v => v + '%' } } } }
-});
+
 
 
 // ── ROADMAP: scale chart ──
