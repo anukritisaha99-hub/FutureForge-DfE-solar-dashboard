@@ -309,22 +309,7 @@
   </div>
 
   <!-- Chart: where value leaks -->
-  <div class="chart-two-col">
-    <div class="chart-wrap">
-      <h4>Where value leaks from the base model</h4>
-      <p>Annual energy value (£) for a 180 kWp school — base model vs corrected assumptions</p>
-      <div class="chart-container" style="height:260px">
-        <canvas id="leakChart"></canvas>
-      </div>
-    </div>
-    <div class="chart-wrap">
-      <h4>Self-consumption: assumed vs realistic</h4>
-      <p>Base model assumes 75% of generation is self-consumed. Metered data from schools suggests closer to 50%.</p>
-      <div class="chart-container" style="height:260px">
-        <canvas id="selfConChart"></canvas>
-      </div>
-    </div>
-  </div>
+ 
 </div>
 
 <!-- VALUE GAP -->
@@ -851,32 +836,6 @@ new Chart(document.getElementById('gainShareChart'), {
     ]
   },
   options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' } }, scales: { x: { stacked: true }, y: { stacked: true, max: 100, ticks: { callback: v => v + '%' } } } }
-});
-
-// ── BATTERY: monthly generation chart ──
-const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-const genData = [55,75,120,160,195,210,200,185,140,90,60,45];
-const occupancy = [90,90,85,70,80,40,5,5,60,85,90,90]; // % days school is open
-new Chart(document.getElementById('monthlyGenChart'), {
-  type: 'bar',
-  data: {
-    labels: months,
-    datasets: [
-      { label: 'Generation (kWh/kWp)', data: genData, backgroundColor: '#90EE90', yAxisID: 'y', borderRadius: 3 },
-      { label: 'School occupancy (%)', data: occupancy, type: 'line', borderColor: AMBER, backgroundColor: AMBER + '22', yAxisID: 'y1', tension: 0.4, pointRadius: 3 }
-    ]
-  },
-  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' } }, scales: { y: { position: 'left', title: { display: true, text: 'kWh/kWp' } }, y1: { position: 'right', max: 100, title: { display: true, text: 'Occupancy %' }, grid: { drawOnChartArea: false }, ticks: { callback: v => v + '%' } } } }
-});
-
-// ── BATTERY: payback chart ──
-new Chart(document.getElementById('paybackChart'), {
-  type: 'bar',
-  data: {
-    labels: ['Self-consumption only', 'Flexibility trading'],
-    datasets: [{ label: 'Payback period (years)', data: [23, 5.5], backgroundColor: [AMBER + 'cc', GREEN + 'cc'], borderRadius: 6 }]
-  },
-  options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y', plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => '~' + c.raw + ' years' } } }, scales: { x: { max: 28, title: { display: true, text: 'Years to payback' } } } }
 });
 
 // ── RISK: donut ──
