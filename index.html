@@ -771,29 +771,6 @@ new Chart(document.getElementById('roadmapScaleChart'), {
   options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => c.raw === 0 ? 'Data and planning phase' : c.raw + ' sites' } } }, scales: { y: { title: { display: true, text: 'Number of schools' } } } }
 });
 
-// ── IMPACT: CO2 chart ──
-const years25 = Array.from({length: 26}, (_, i) => i === 0 ? 'Year 0' : 'Year ' + i);
-const co2Cumulative = years25.map((_, i) => Math.round(i * 4200 * 150));
-new Chart(document.getElementById('co2Chart'), {
-  type: 'line',
-  data: {
-    labels: years25,
-    datasets: [{ label: 'Cumulative CO₂ avoided (t)', data: co2Cumulative, borderColor: GREEN, backgroundColor: GREEN + '22', fill: true, tension: 0.2, pointRadius: 0 }]
-  },
-  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { ticks: { callback: v => (v/1000).toFixed(0) + 'k t' } } } }
-});
-
-// ── IMPACT: savings chart ──
-const savingsCumulative = years25.map((_, i) => parseFloat((i * 11601 * 150 / 1000000).toFixed(2)));
-new Chart(document.getElementById('savingsChart'), {
-  type: 'line',
-  data: {
-    labels: years25,
-    datasets: [{ label: 'Cumulative savings (£m)', data: savingsCumulative, borderColor: TEAL, backgroundColor: TEAL + '22', fill: true, tension: 0.2, pointRadius: 0 }]
-  },
-  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { ticks: { callback: v => '£' + v + 'm' } } } }
-});
-
 // ── INTERACTIVE FINANCIAL MODEL ──
 const cap = 180;
 const gridTariff = 0.21;
