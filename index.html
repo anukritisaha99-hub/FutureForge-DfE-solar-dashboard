@@ -426,23 +426,6 @@
     </div>
   </div>
 
-  <!-- gain-share split chart -->
-  <div class="chart-two-col">
-    <div class="chart-wrap">
-      <h4>Gain-share split over the contract life</h4>
-      <p>How battery revenue is divided between funder and school at key stages of the 25-year contract.</p>
-      <div class="chart-container" style="height:260px">
-        <canvas id="gainShareChart"></canvas>
-      </div>
-    </div>
-    <div class="chart-wrap">
-      <h4>School value: base PPA vs after Part 1 and Part 2</h4>
-      <p>Annual value per school (£/yr) before and after the two-part fix is applied.</p>
-      <div class="chart-container" style="height:260px">
-        <canvas id="fixCompareChart"></canvas>
-      </div>
-    </div>
-  </div>
 </div>
 
 <!-- BATTERY MODEL -->
@@ -868,20 +851,6 @@ new Chart(document.getElementById('gainShareChart'), {
     ]
   },
   options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' } }, scales: { x: { stacked: true }, y: { stacked: true, max: 100, ticks: { callback: v => v + '%' } } } }
-});
-
-// ── FIX: before/after chart ──
-new Chart(document.getElementById('fixCompareChart'), {
-  type: 'bar',
-  data: {
-    labels: ['Base PPA', 'After Part 1 and Part 2'],
-    datasets: [
-      { label: 'Self-use saving', data: [5349, 4547], backgroundColor: MID, borderRadius: 4 },
-      { label: 'Export income to school', data: [0, 4362], backgroundColor: TEAL, borderRadius: 4 },
-      { label: 'Battery flexibility', data: [0, 2692], backgroundColor: GREEN, borderRadius: 4 }
-    ]
-  },
-  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' }, tooltip: { callbacks: { label: c => c.dataset.label + ': £' + c.raw.toLocaleString() } } }, scales: { x: { stacked: true }, y: { stacked: true, ticks: { callback: v => '£' + v.toLocaleString() } } } }
 });
 
 // ── BATTERY: monthly generation chart ──
