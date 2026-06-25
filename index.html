@@ -499,45 +499,78 @@
 
 <!-- INTERACTIVE MODEL -->
 <div class="section alt" id="model">
-  <div class="section-label"></div>
+  <div class="section-label">Interactive Financial Model</div>
   <div class="section-title">Adjust the assumptions, see the impact</div>
-  <p class="section-desc">The base model uses conservative inputs. Move the sliders to explore what corrected assumptions deliver for a 180 kWp school.</p>
+  <p class="section-desc">Sliders start at the DfE base model (DfE, 2026). Move them toward corrected assumptions to see what the school actually gains. All values are 25-year totals converted to £/yr.</p>
   <div class="model-wrap">
     <div class="model-controls">
+
       <div class="ctrl-group">
-        <label>Export price (p/kWh) <span id="exportLabel">10p</span></label>
+        <label>Export price (p/kWh) <span id="exportLabel">7.0p</span></label>
         <input type="range" id="exportPrice" min="7" max="15" value="7" step="0.5">
-        <div class="progress-label">Base model: 7p flat · Ofgem SEG avg: ~10p</div>
+        <div class="progress-label">Base model: 7p flat · Ofgem SEG realistic: ~10p</div>
       </div>
+
       <div class="ctrl-group">
-        <label>School export share (%) <span id="exportShareLabel">50%</span></label>
+        <label>School export share (%) <span id="exportShareLabel">0%</span></label>
         <input type="range" id="exportShare" min="0" max="75" value="0" step="5">
-        <div class="progress-label">Base model: 0% (all to supplier) · Realistic: 50%</div>
+        <div class="progress-label">Base model: 0% (all to supplier) · Negotiated realistic: 50%</div>
       </div>
+
       <div class="ctrl-group">
-        <label>Annual yield (kWh/kWp/yr) <span id="yieldLabel">960</span></label>
-        <input type="range" id="yieldVal" min="700" max="1100" value="800" step="20">
-        <div class="progress-label">Base model: ~801 · UK avg: ~960 · South England: ~1,000+</div>
+        <label>Annual yield (kWh/kWp/yr) <span id="yieldLabel">801</span></label>
+        <input type="range" id="yieldVal" min="700" max="1100" value="801" step="1">
+        <div class="progress-label">Base model: 801 · After retrofit controls: ~900 · UK avg: ~960</div>
       </div>
+
       <div class="ctrl-group">
-        <label>Self-consumption (%) <span id="selfConLabel">50%</span></label>
+        <label>Self-consumption (%) <span id="selfConLabel">75%</span></label>
         <input type="range" id="selfCon" min="30" max="80" value="75" step="5">
-        <div class="progress-label">Base model: 75% · Realistic (closed 175 days): ~50%</div>
+        <div class="progress-label">Base model: 75% · Realistic (schools closed 175 days): ~50%</div>
       </div>
+
+      <div class="ctrl-group" style="background:var(--light);border-radius:10px;padding:16px 18px;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
+        <div>
+          <div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:4px;">Add battery storage</div>
+          <div style="font-size:12px;color:var(--muted);">Adds ~£2,693/yr via gain-share flexibility income (DfE model)</div>
+        </div>
+        <label style="display:flex;align-items:center;gap:10px;cursor:pointer;">
+          <input type="checkbox" id="batteryToggle" style="width:20px;height:20px;accent-color:var(--teal);">
+          <span id="batteryLabel" style="font-size:13px;font-weight:700;color:var(--teal);">Off</span>
+        </label>
+      </div>
+
     </div>
+
     <div class="model-result">
       <div class="res-label">Estimated Annual Value to School</div>
-      <div class="res-val" id="annualVal">...</div>
-      <div class="res-sub" id="valChange">Loading...</div>
+      <div class="res-val" id="annualVal">£6,410</div>
+      <div class="res-sub" id="valChange">Base PPA model</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:20px;" id="npvVal">£106k NPV</div>
+
+      <div style="font-size:11px;color:rgba(255,255,255,0.4);text-align:left;margin-bottom:10px;letter-spacing:1px;text-transform:uppercase;">25-year value breakdown</div>
       <div class="bar-container">
         <div class="bar-row">
-          <div class="bar-label">Self-use saving</div>
-          <div class="bar-track"><div class="bar-fill bar-self" id="barSelf" style="width:0%"></div></div>
+          <div class="bar-label">PPA saving</div>
+          <div class="bar-track"><div class="bar-fill bar-self" id="barBase" style="width:60%">£160k</div></div>
         </div>
         <div class="bar-row">
-          <div class="bar-label">Export income</div>
-          <div class="bar-track"><div class="bar-fill bar-export" id="barExport" style="width:0%"></div></div>
+          <div class="bar-label">Yield gain</div>
+          <div class="bar-track"><div class="bar-fill" id="barSCGain" style="width:0%;background:linear-gradient(to right,#0E7A46,#2ECC71);border-radius:4px;height:100%;display:flex;align-items:center;padding-left:8px;font-size:11px;font-weight:700;color:white;"></div></div>
         </div>
+        <div class="bar-row">
+          <div class="bar-label">Export share</div>
+          <div class="bar-track"><div class="bar-fill bar-export" id="barExport" style="width:0%">£0</div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Battery flex</div>
+          <div class="bar-track"><div class="bar-fill" id="barFlex" style="width:0%;background:linear-gradient(to right,#7B2D8B,#C471ED);border-radius:4px;height:100%;display:flex;align-items:center;padding-left:8px;font-size:11px;font-weight:700;color:white;"></div></div>
+        </div>
+      </div>
+
+      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:20px;text-align:left;line-height:1.6;">
+        Source: Solar_PPA_Model-DfE_project.xlsx · DfE (2026)<br>
+        NPV at 3.5% real (HM Treasury Green Book)
       </div>
     </div>
   </div>
@@ -791,8 +824,6 @@ new Chart(document.getElementById('npvChart'), {
 });
 
 
-
-
 // ── ROADMAP: scale chart ──
 new Chart(document.getElementById('roadmapScaleChart'), {
   type: 'bar',
@@ -803,52 +834,90 @@ new Chart(document.getElementById('roadmapScaleChart'), {
   options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => c.raw === 0 ? 'Data and planning phase' : c.raw + ' sites' } } }, scales: { y: { title: { display: true, text: 'Number of schools' } } } }
 });
 
-// ── INTERACTIVE FINANCIAL MODEL ──
-const cap = 180;
-const gridTariff = 0.21;
-function calcModel() {
-  const ep = parseFloat(document.getElementById('exportPrice').value) / 100;
-  const es = parseFloat(document.getElementById('exportShare').value) / 100;
-  const yld = parseFloat(document.getElementById('yieldVal').value);
-  const sc = parseFloat(document.getElementById('selfCon').value) / 100;
-
-  document.getElementById('exportLabel').textContent = (ep * 100).toFixed(1) + 'p';
-  document.getElementById('exportShareLabel').textContent = (es * 100).toFixed(0) + '%';
-  document.getElementById('yieldLabel').textContent = yld;
-  document.getElementById('selfConLabel').textContent = (sc * 100).toFixed(0) + '%';
-
-  const annual = cap * yld;
-  const selfKwh = annual * sc;
-  const exportKwh = annual * (1 - sc);
-  const selfSaving = selfKwh * gridTariff;
-  const exportIncome = exportKwh * ep * es;
-  const total = selfSaving + exportIncome;
-
-  const baseAnnual = cap * 801;
-  const base = baseAnnual * 0.75 * gridTariff;
-  const uplift = ((total - base) / base * 100).toFixed(1);
-
-  document.getElementById('annualVal').textContent = '£' + Math.round(total).toLocaleString();
-  const changeEl = document.getElementById('valChange');
-  changeEl.textContent = (total >= base ? '+' : '') + uplift + '% vs base PPA model';
-  changeEl.style.color = total >= base ? '#5DE3F0' : '#F39C12';
-
-  const maxBar = Math.max(total, base * 1.5);
-  const bs = document.getElementById('barSelf');
-  const be = document.getElementById('barExport');
-  bs.style.width = Math.min((selfSaving / maxBar * 100), 100) + '%';
-  bs.textContent = '£' + Math.round(selfSaving).toLocaleString();
-  be.style.width = Math.min((exportIncome / maxBar * 100), 100) + '%';
-  be.textContent = exportIncome > 0 ? '£' + Math.round(exportIncome).toLocaleString() : '£0';
-}
-['exportPrice','exportShare','yieldVal','selfCon'].forEach(id => document.getElementById(id).addEventListener('input', calcModel));
-calcModel();
 
 // ── ROADMAP TABS ──
 function showPhase(n) {
   document.querySelectorAll('.rm-panel').forEach((p, i) => p.classList.toggle('active', i === n));
   document.querySelectorAll('.rm-tab').forEach((t, i) => t.classList.toggle('active', i === n));
+}//
+// ── INTERACTIVE FINANCIAL MODEL ──
+const BASE_SAVING_25YR = 160260;
+const BASE_PER_YR = 6410.4;
+const CONTRACT = 25;
+const CAPACITY = 180;
+const FLEX_INCOME_25YR = 67315;
+
+function calcModel() {
+  const exportRate  = parseFloat(document.getElementById('exportPrice').value) / 100;
+  const exportShare = parseFloat(document.getElementById('exportShare').value) / 100;
+  const yieldKwh    = parseFloat(document.getElementById('yieldVal').value);
+  const selfConPct  = parseFloat(document.getElementById('selfCon').value) / 100;
+  const hasBattery  = document.getElementById('batteryToggle').checked;
+
+  document.getElementById('exportLabel').textContent      = (exportRate * 100).toFixed(1) + 'p';
+  document.getElementById('exportShareLabel').textContent = (exportShare * 100).toFixed(0) + '%';
+  document.getElementById('yieldLabel').textContent       = Math.round(yieldKwh);
+  document.getElementById('selfConLabel').textContent     = (selfConPct * 100).toFixed(0) + '%';
+  document.getElementById('batteryLabel').textContent     = hasBattery ? 'On' : 'Off';
+
+  // Export volume over 25 years
+  const annualGen   = CAPACITY * yieldKwh;
+  const exportVol25 = annualGen * (1 - selfConPct) * CONTRACT;
+
+  // Yield gain above base (801), captured as self-use saving at grid price
+  const yieldGain25 = yieldKwh > 801
+    ? (yieldKwh - 801) * CAPACITY * selfConPct * 0.21 * CONTRACT
+    : 0;
+
+  // Modest retrofit self-consumption gain (controls/load-shifting)
+  const scGain25 = (exportShare > 0 || yieldKwh >= 900) ? 12000 : 0;
+
+  // Export income to school over 25 years
+  const exportIncome25 = exportVol25 * exportRate * exportShare;
+
+  // Battery flexibility income
+  const flexIncome25 = hasBattery ? FLEX_INCOME_25YR : 0;
+
+  // Total
+  const total25 = BASE_SAVING_25YR + scGain25 + yieldGain25 + exportIncome25 + flexIncome25;
+  const perYear = total25 / CONTRACT;
+  const upliftPct = ((perYear - BASE_PER_YR) / BASE_PER_YR * 100).toFixed(1);
+
+  // NPV at 3.5% over 25 years
+  const npv = perYear * ((1 - Math.pow(1.035, -25)) / 0.035);
+
+  document.getElementById('annualVal').textContent = '£' + Math.round(perYear).toLocaleString();
+  document.getElementById('npvVal').textContent    = '£' + Math.round(npv / 1000) + 'k NPV';
+
+  const changeEl = document.getElementById('valChange');
+  changeEl.textContent = (perYear >= BASE_PER_YR ? '+' : '') + upliftPct + '% vs base PPA';
+  changeEl.style.color = perYear >= BASE_PER_YR ? '#5DE3F0' : '#F39C12';
+
+  const maxBar = Math.max(total25, BASE_SAVING_25YR * 2);
+
+  const barBase = document.getElementById('barBase');
+  barBase.style.width = Math.min((BASE_SAVING_25YR / maxBar * 100), 100) + '%';
+  barBase.textContent = '£160k';
+
+  const barSCGain = document.getElementById('barSCGain');
+  const gainTotal = scGain25 + yieldGain25;
+  barSCGain.style.width = gainTotal > 0 ? Math.min((gainTotal / maxBar * 100), 100) + '%' : '0%';
+  barSCGain.textContent = gainTotal > 0 ? '+£' + Math.round(gainTotal / 1000) + 'k' : '';
+
+  const barExport = document.getElementById('barExport');
+  barExport.style.width = exportIncome25 > 0 ? Math.min((exportIncome25 / maxBar * 100), 100) + '%' : '0%';
+  barExport.textContent = exportIncome25 > 0 ? '£' + Math.round(exportIncome25 / 1000) + 'k' : '£0';
+
+  const barFlex = document.getElementById('barFlex');
+  barFlex.style.width = flexIncome25 > 0 ? Math.min((flexIncome25 / maxBar * 100), 100) + '%' : '0%';
+  barFlex.textContent = flexIncome25 > 0 ? '£' + Math.round(flexIncome25 / 1000) + 'k' : '';
 }
+
+['exportPrice','exportShare','yieldVal','selfCon'].forEach(id => {
+  document.getElementById(id).addEventListener('input', calcModel);
+});
+document.getElementById('batteryToggle').addEventListener('change', calcModel);
+calcModel();
 </script>
 </body>
 </html>
