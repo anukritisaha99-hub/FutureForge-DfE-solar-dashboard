@@ -829,7 +829,7 @@ new Chart(document.getElementById('roadmapScaleChart'), {
   type: 'bar',
   data: {
     labels: ['Phase 1: Do Now', 'Phase 2: Prove in Pilot', 'Phase 3: Scale'],
-    datasets: [{ label: 'Number of sites', data: [0, 20, 150], backgroundColor: [TEAL + '55', TEAL + 'aa', TEAL], borderRadius: 6 }]
+    datasets: [{ label: 'Number of sites', data: [0, 20, 150], backgroundColor: [TEAL, TEAL + 'aa', TEAL+ '55'], borderRadius: 6 }]
   },
   options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => c.raw === 0 ? 'Data and planning phase' : c.raw + ' sites' } } }, scales: { y: { title: { display: true, text: 'Number of schools' } } } }
 });
