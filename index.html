@@ -59,9 +59,12 @@
   .tri-card:hover::before { background: var(--teal); }
   .tri-card h3 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 14px; }
   .tri-card ul { padding-left: 0; list-style: none; }
-  .tri-card ul li { font-size: 13.5px; color: #3A5070; padding: 5px 0; border-bottom: 1px solid rgba(0,0,0,0.05); display: flex; gap: 8px; align-items: flex-start; }
+  .tri-card ul li { padding: 9px 0; border-bottom: 1px solid rgba(0,0,0,0.05); display: flex; gap: 9px; align-items: flex-start; }
   .tri-card ul li:last-child { border-bottom: none; }
-  .tri-card ul li::before { content: '›'; color: var(--teal); font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+  .tri-card ul li:first-child { padding-top: 2px; }
+  .tri-card ul li::before { content: '\203A'; color: var(--teal); font-weight: 800; flex-shrink: 0; font-size: 15px; line-height: 1.35; }
+  .tri-card ul li .li-label { font-size: 13px; font-weight: 700; color: var(--navy); line-height: 1.35; display: block; margin-bottom: 2px; }
+  .tri-card ul li .li-desc { font-size: 12px; color: #5A7090; line-height: 1.45; display: block; }
   .badge { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 20px; margin-bottom: 10px; }
   .badge-primary { background: #D0EAF7; color: #0B4A7A; }
   .badge-flag { background: #FEF3CD; color: #7A5A00; }
@@ -274,25 +277,36 @@
   <div class="section-title">Three things you need to know before reading this deck</div>
   <p class="section-desc">Hover each card to explore.</p>
   <div class="tri-grid">
-    <div class="tri-card">
-      <div class="badge badge-primary">DfE Design</div>
-      <h3>The Existing DfE Model</h3>
-      <ul>
-        <li><strong>Supplier-funded</strong> Solar Installed, financed & maintained (PPA provider)</li>
-        <li><strong>School buys the power</strong> Fixed (+CPI) tariff for over 20 years</li>
-        <li><strong>Delivered via RDPs</strong> RDPs batch schools, procure finance, feasibility & assured installation</li>
-        <li><strong>Pilot then scale</strong> 150 schools in RRP Pathfinder 1, with national rollout if VfM is proven</li>
-      </ul>
-    </div>
-    <div class="tri-card">
-      <div class="badge badge-primary">Scope of Work</div>
-      <h3>What We Examined</h3>
-      <ul>
-        <li><strong>Pressure-tested the PPA</strong> Primary Focus: Financials, assumptions and benifits</li>
-        <li><strong>Developed delivery options</strong> Primary Focus: Funding & Delivery Models with risk assessment</li>
-        <li><strong>Market health</strong> Flagged for further work: Battery, tariff costs and grid capacity</li>
-      </ul>
-    </div>
+  <div class="tri-card">
+    <div class="badge badge-primary">DfE Design</div>
+    <h3>The Existing DfE Model</h3>
+    <ul>
+      <li><span><span class="li-label">Supplier-funded</span><span class="li-desc">Solar installed, financed &amp; maintained by the PPA provider.</span></span></li>
+      <li><span><span class="li-label">School buys the power</span><span class="li-desc">Fixed (+CPI) tariff for over 20 years.</span></span></li>
+      <li><span><span class="li-label">Delivered via RDPs</span><span class="li-desc">RDPs batch schools and procure finance, feasibility &amp; assured installation.</span></span></li>
+      <li><span><span class="li-label">Pilot then scale</span><span class="li-desc">150 schools in RRP Pathfinder 1, with national rollout if VfM is proven.</span></span></li>
+    </ul>
+  </div>
+  <div class="tri-card">
+    <div class="badge badge-primary">Scope of Work</div>
+    <h3>What We Examined</h3>
+    <ul>
+      <li><span><span class="li-label">Pressure-tested the PPA</span><span class="li-desc">Primary focus: financials, assumptions and benefits.</span></span></li>
+      <li><span><span class="li-label">Developed delivery options</span><span class="li-desc">Primary focus: funding &amp; delivery models with risk assessment.</span></span></li>
+      <li><span><span class="li-label">Market health</span><span class="li-desc">Flagged for further work: battery, tariff costs and grid capacity.</span></span></li>
+    </ul>
+  </div>
+  <div class="tri-card">
+    <div class="badge badge-flag">Value Left on the Table</div>
+    <h3>Where the Base Model Falls Short</h3>
+    <ul>
+      <li><span><span class="li-label">Export income goes to the supplier</span><span class="li-desc">Surplus solar to grid; income booked by the supplier.</span></span></li>
+      <li><span><span class="li-label">Export priced at 7p flat</span><span class="li-desc">~10p better reflects value (Ofgem, 2025) over 25 years.</span></span></li>
+      <li><span><span class="li-label">Yield set low</span><span class="li-desc">~801 kWh/kWp — below the UK average ~960, and ~1,000+ typical of southern England.</span></span></li>
+      <li><span><span class="li-label">Empty-summer surplus</span><span class="li-desc">Schools shut ~175 days a year, yet a &gt;75% self-consumption is assumed. Storage captures it.</span></span></li>
+    </ul>
+  </div>
+</div>
     <div class="tri-card">
       <div class="badge badge-flag">Value Left on the Table</div>
       <h3>Where the Base Model Falls Short</h3>
