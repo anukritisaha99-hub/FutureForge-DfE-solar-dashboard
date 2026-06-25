@@ -816,25 +816,30 @@ function calcModel() {
   document.getElementById('exportShareLabel').textContent = (es * 100).toFixed(0) + '%';
   document.getElementById('yieldLabel').textContent = yld;
   document.getElementById('selfConLabel').textContent = (sc * 100).toFixed(0) + '%';
+
   const annual = cap * yld;
   const selfKwh = annual * sc;
   const exportKwh = annual * (1 - sc);
   const selfSaving = selfKwh * gridTariff;
   const exportIncome = exportKwh * ep * es;
   const total = selfSaving + exportIncome;
-  const base = 6410;
+
+  const baseAnnual = cap * 801;
+  const base = baseAnnual * 0.75 * gridTariff;
   const uplift = ((total - base) / base * 100).toFixed(1);
+
   document.getElementById('annualVal').textContent = '£' + Math.round(total).toLocaleString();
   const changeEl = document.getElementById('valChange');
   changeEl.textContent = (total >= base ? '+' : '') + uplift + '% vs base PPA model';
   changeEl.style.color = total >= base ? '#5DE3F0' : '#F39C12';
-  const maxBar = Math.max(total, 12000);
+
+  const maxBar = Math.max(total, base * 1.5);
   const bs = document.getElementById('barSelf');
   const be = document.getElementById('barExport');
   bs.style.width = Math.min((selfSaving / maxBar * 100), 100) + '%';
   bs.textContent = '£' + Math.round(selfSaving).toLocaleString();
   be.style.width = Math.min((exportIncome / maxBar * 100), 100) + '%';
-  be.textContent = '£' + Math.round(exportIncome).toLocaleString();
+  be.textContent = exportIncome > 0 ? '£' + Math.round(exportIncome).toLocaleString() : '£0';
 }
 ['exportPrice','exportShare','yieldVal','selfCon'].forEach(id => document.getElementById(id).addEventListener('input', calcModel));
 calcModel();
