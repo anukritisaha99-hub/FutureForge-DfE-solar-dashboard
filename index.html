@@ -371,44 +371,98 @@
   <div class="section-label">The Fix</div>
   <div class="section-title">Two parts of the same solution</div>
   <p class="section-desc">Part 1 packages the install. Part 2 makes sure the value reaches schools by design, not by luck.</p>
-  <div class="duo-grid">
-    <div class="fix-card">
-      <h3>Part 1 · Two Package Options</h3>
-      <p class="fix-sub">Clustering lets every school take part and sets batch flexibility</p>
-      <div class="pkg-row">
-        <div class="pkg">
-          <div class="pkg-name">🏫 Small</div>
-          <div class="pkg-val">Clusters of primaries<br>30–100 kWp each · ~10 batched</div>
-        </div>
-        <div class="pkg">
-          <div class="pkg-name">🏛️ Medium</div>
-          <div class="pkg-val">Secondaries / colleges<br>120–200 kWp each · ~5 batched</div>
-        </div>
+
+  <!-- PART 1 -->
+  <div style="margin-bottom:40px;">
+    <h3 style="font-size:18px;font-weight:800;color:var(--navy);margin-bottom:6px;">Part 1 · Two Package Options</h3>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:24px;">Clustering lets every school take part and sets batch flexibility: more small primaries, fewer large secondaries</p>
+
+    <div style="display:grid;grid-template-columns:200px 1fr 1fr;gap:16px;align-items:start;">
+
+      <!-- row headers -->
+      <div></div>
+      <div style="text-align:center;font-size:13px;font-weight:700;color:var(--navy);padding-bottom:8px;border-bottom:2px solid var(--border);">
+        SMALL (clusters of primaries)
+        <div style="font-size:12px;font-weight:400;color:var(--muted);margin-top:4px;">30–100 kWp each · ~10 batched</div>
       </div>
-      <div class="split-list">
-        <div class="split-row"><span class="label">🔧 Retrofit / Optimise</span><span class="val">Lower capex · faster · lower risk</span></div>
-        <div class="split-row"><span class="label">🔋 Solar + Battery</span><span class="val">Higher value · clustering structural</span></div>
-        <div class="split-row"><span class="label">Small sites</span><span class="val">Shared cluster-owned battery</span></div>
-        <div class="split-row"><span class="label">Large sites</span><span class="val">Battery per site or across sites</span></div>
-        <div class="split-row"><span class="label">School capex</span><span class="val" style="color:var(--teal);">£0 across all options</span></div>
+      <div style="text-align:center;font-size:13px;font-weight:700;color:var(--navy);padding-bottom:8px;border-bottom:2px solid var(--border);">
+        MEDIUM (secondaries / colleges)
+        <div style="font-size:12px;font-weight:400;color:var(--muted);margin-top:4px;">120–200 kWp each · ~5 batched</div>
       </div>
+
+      <!-- Retrofit row -->
+      <div style="background:var(--navy);border-radius:10px;padding:20px 18px;color:white;">
+        <div style="font-size:15px;font-weight:800;margin-bottom:8px;">Retrofit / optimise</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.65);">Lower capex · faster · lower risk</div>
+      </div>
+      <div style="background:var(--light);border-radius:10px;padding:20px 18px;border:1.5px solid var(--border);">
+        <div style="font-size:14px;font-weight:700;color:var(--navy);margin-bottom:8px;">Tune existing arrays</div>
+        <div style="font-size:13px;color:#3A5070;">Fix self-consumption, export terms and controls. Modest additions. No capex.</div>
+      </div>
+      <div style="background:var(--light);border-radius:10px;padding:20px 18px;border:1.5px solid var(--border);">
+        <div style="font-size:14px;font-weight:700;color:var(--navy);margin-bottom:8px;">Optimise larger arrays</div>
+        <div style="font-size:13px;color:#3A5070;">Mainly a procurement convenience for these sites.</div>
+      </div>
+
+      <!-- Solar + Battery row -->
+      <div style="background:var(--navy);border-radius:10px;padding:20px 18px;color:white;">
+        <div style="font-size:15px;font-weight:800;margin-bottom:8px;">Solar + battery</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.65);">Higher value · clustering structural</div>
+      </div>
+      <div style="background:#E8F8F0;border-radius:10px;padding:20px 18px;border:1.5px solid #A8DFC0;">
+        <div style="font-size:14px;font-weight:700;color:var(--teal);margin-bottom:8px;">Shared, cluster-owned battery</div>
+        <div style="font-size:13px;color:#2A5040;">One storage asset across many small sites. Gain-share returns value directly to schools.</div>
+      </div>
+      <div style="background:#E8F8F0;border-radius:10px;padding:20px 18px;border:1.5px solid #A8DFC0;">
+        <div style="font-size:14px;font-weight:700;color:var(--teal);margin-bottom:8px;">Battery per / across sites</div>
+        <div style="font-size:13px;color:#2A5040;">Fewer schools needed for scale. Full flexibility revenue stack.</div>
+      </div>
+
     </div>
-    <div class="fix-card">
-      <h3>Part 2 · Sharing the Value Fairly, by Design</h3>
-      <p class="fix-sub">Keep every stakeholder interested by capping the supplier's return, not the school's share</p>
-      <div class="split-list">
-        <div class="split-row"><span class="label">🔋 Battery gain-share</span><span class="val">Negotiated into PPA via DfE leverage</span></div>
-        <div class="split-row"><span class="label">Recovery ratchet</span><span class="val">Funder ~80% until recovered (~yr 14)</span></div>
-        <div class="split-row"><span class="label">Post-recovery flip</span><span class="val">School ~80%; open-book throughout</span></div>
-        <div class="split-row"><span class="label">Solar savings</span><span class="val">Pro-rata by roof size</span></div>
-        <div class="split-row"><span class="label">Smallest schools</span><span class="val">Light top-slice gives guaranteed minimum</span></div>
-        <div class="split-row"><span class="label">Battery placement</span><span class="val">Per-site ~5–10 m²; cluster = procurement and finance, not one box</span></div>
+
+    <div style="background:var(--teal);border-radius:8px;padding:14px 20px;margin-top:20px;text-align:center;">
+      <span style="color:white;font-size:13px;font-weight:700;">Clustering lets every school take part and sets batch flexibility: more small primaries, fewer large secondaries</span>
+    </div>
+  </div>
+
+  <!-- PART 2 -->
+  <div>
+    <h3 style="font-size:18px;font-weight:800;color:var(--navy);margin-bottom:6px;">Part 2 · Sharing the Value Fairly, by Design</h3>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:24px;">Keep every stakeholder interested by capping the supplier's return, not the school's share</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+
+      <!-- Left card: gain-share -->
+      <div style="background:var(--light);border:1.5px solid var(--border);border-radius:12px;padding:28px 24px;">
+        <div style="font-size:24px;margin-bottom:12px;">🤝</div>
+        <div style="font-size:15px;font-weight:800;color:var(--navy);margin-bottom:12px;">Battery: gain-share with whoever funds it</div>
+        <p style="font-size:13px;color:#3A5070;margin-bottom:16px;">If the <strong>PPA provider funds</strong> the battery, the school's share must be <strong>negotiated in</strong> using DfE's procurement leverage.</p>
+        <div style="font-size:13px;font-weight:700;color:var(--teal);margin-bottom:6px;">A recovery-then-flip ratchet</div>
+        <p style="font-size:13px;color:#3A5070;margin-bottom:16px;">Funder earns a <strong>benchmarked fair return</strong> until capex is recovered, then the split flips to the school. Open-book throughout.</p>
+        <div style="background:white;border:1.5px solid var(--border);border-radius:8px;padding:14px 16px;">
+          <span style="font-size:13px;color:var(--teal);font-weight:700;">Illustrative split:</span>
+          <span style="font-size:13px;color:#3A5070;"> funder ~80% until recovery (~yr 14), then school ~80%. The split is the negotiation lever.</span>
+        </div>
       </div>
+
+      <!-- Right card: distribution -->
+      <div style="background:var(--navy);border-radius:12px;padding:28px 24px;color:white;">
+        <div style="font-size:24px;margin-bottom:12px;">✅</div>
+        <div style="font-size:15px;font-weight:800;color:white;margin-bottom:20px;">Distributing value and siting batteries</div>
+        <div style="font-size:13px;font-weight:700;color:var(--amber);margin-bottom:6px;">Pro-rata by default</div>
+        <p style="font-size:13px;color:rgba(255,255,255,0.75);margin-bottom:18px;">Each school keeps the saving its own roof generates. No cross-subsidy, so larger sites stay in.</p>
+        <div style="font-size:13px;font-weight:700;color:var(--amber);margin-bottom:6px;">Battery placement and safety</div>
+        <p style="font-size:13px;color:rgba(255,255,255,0.75);">Each site hosts its own ~5–10 m² battery. The cluster means procured and financed together, not one shared box. Siting concentrated in larger sites and set by a fire-safety check.</p>
+      </div>
+
+    </div>
+
+    <div style="background:var(--teal);border-radius:8px;padding:14px 20px;margin-top:20px;text-align:center;">
+      <span style="color:white;font-size:13px;font-weight:700;">Keep every stakeholder interested by capping the supplier's return and not by minimising the school's share</span>
     </div>
   </div>
 
 </div>
-
 <!-- BATTERY MODEL -->
 <div class="battery-section" id="battery">
   <div class="section-label">Storage Economics</div>
