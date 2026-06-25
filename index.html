@@ -506,22 +506,22 @@
     <div class="model-controls">
       <div class="ctrl-group">
         <label>Export price (p/kWh) <span id="exportLabel">10p</span></label>
-        <input type="range" id="exportPrice" min="7" max="15" value="10" step="0.5">
+        <input type="range" id="exportPrice" min="7" max="15" value="7" step="0.5">
         <div class="progress-label">Base model: 7p flat · Ofgem SEG avg: ~10p</div>
       </div>
       <div class="ctrl-group">
         <label>School export share (%) <span id="exportShareLabel">50%</span></label>
-        <input type="range" id="exportShare" min="0" max="75" value="50" step="5">
+        <input type="range" id="exportShare" min="0" max="75" value="0" step="5">
         <div class="progress-label">Base model: 0% (all to supplier) · Realistic: 50%</div>
       </div>
       <div class="ctrl-group">
         <label>Annual yield (kWh/kWp/yr) <span id="yieldLabel">960</span></label>
-        <input type="range" id="yieldVal" min="700" max="1100" value="960" step="20">
+        <input type="range" id="yieldVal" min="700" max="1100" value="800" step="20">
         <div class="progress-label">Base model: ~801 · UK avg: ~960 · South England: ~1,000+</div>
       </div>
       <div class="ctrl-group">
         <label>Self-consumption (%) <span id="selfConLabel">50%</span></label>
-        <input type="range" id="selfCon" min="30" max="80" value="50" step="5">
+        <input type="range" id="selfCon" min="30" max="80" value="75" step="5">
         <div class="progress-label">Base model: 75% · Realistic (closed 175 days): ~50%</div>
       </div>
     </div>
@@ -811,6 +811,46 @@ function calcModel() {
   const es = parseFloat(document.getElementById('exportShare').value) / 100;
   const yld = parseFloat(document.getElementById('yieldVal').value);
   const sc = parseFloat(document.getElementById('selfCon').value) / 100;
+
+  document.getElementById('exportLabel').textContent = (ep * 100).toFixed(1) + 'p';
+  document.getElementById('exportShareLabel').textContent = (es * 100).toFixed(0) + '%';
+  document.getElementById('yieldLabel').textContent = yld;
+  document.getElementById('selfConLabel').textContent = (sc * 100).toFixed(0) + '%';
+
+  const annual = cap * yld;
+  const selfKwh = annual * sc;
+  const exportKwh = annual * (1 - sc);
+
+  // Self-use saving: school avoids buying grid electricity at 21p
+  const selfSaving = selfKwh * gridTariff;
+
+  // Export income: school receives its negotiated share at the agreed export price
+  const exportIncome = exportKwh * ep * es;
+
+  // Total value to school
+  const total = selfSaving + exportIncome;
+
+  // Base case: 801 kWh/kWp, 75% self-consumption, 7p export, 0% school share
+  const baseAnnual = cap * 801;
+  const baseSelf = baseAnnual * 0.75 * gridTariff;
+  const baseExport = baseAnnual * 0.25 * 0.07 * 0;
+  const base = baseSelf + baseExport;
+
+  const uplift = ((total - base) / base * 100).toFixed(1);
+
+  document.getElementById('annualVal').textContent = '£' + Math.round(total).toLocaleString();
+  const changeEl = document.getElementById('valChange');
+  changeEl.textContent = (total >= base ? '+' : '') + uplift + '% vs base PPA model';
+  changeEl.style.color = total >= base ? '#5DE3F0' : '#F39C12';
+
+  const maxBar = Math.max(total, base * 1.5);
+  const bs = document.getElementById('barSelf');
+  const be = document.getElementById('barExport');
+  bs.style.width = Math.min((selfSaving / maxBar * 100), 100) + '%';
+  bs.textContent = '£' + Math.round(selfSaving).toLocaleString();
+  be.style.width = Math.min((exportIncome / maxBar * 100), 100) + '%';
+  be.textContent = exportIncome > 0 ? '£' + Math.round(exportIncome).toLocaleString() : '£0';
+}
   document.getElementById('exportLabel').textContent = (ep * 100).toFixed(1) + 'p';
   document.getElementById('exportShareLabel').textContent = (es * 100).toFixed(0) + '%';
   document.getElementById('yieldLabel').textContent = yld;
