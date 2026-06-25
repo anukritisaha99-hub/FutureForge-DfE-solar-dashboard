@@ -636,14 +636,6 @@
   <div class="section-title">Do now · Prove in pilot · Scale if it works</div>
   <p class="section-desc">Click a phase to explore the actions. Progress reflects where we are today.</p>
 
-  <div class="chart-wrap" style="margin-bottom:32px;">
-    <h4>Site scale across the three phases</h4>
-    <p>From 20 trial sites to 150 schools in Pathfinder 1, then national rollout if VfM is confirmed.</p>
-    <div class="chart-container" style="height:200px">
-      <canvas id="roadmapScaleChart"></canvas>
-    </div>
-  </div>
-
   <div class="rm-tabs">
     <button class="rm-tab active" onclick="showPhase(0)">1 · Do Now</button>
     <button class="rm-tab" onclick="showPhase(1)">2 · Prove in Pilot</button>
@@ -821,17 +813,6 @@ new Chart(document.getElementById('npvChart'), {
     datasets: [{ label: 'NPV (£k)', data: [106, 147, 191], backgroundColor: [MID, TEAL, GREEN], borderRadius: 6 }]
   },
   options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => '£' + c.raw + 'k NPV' } } }, scales: { y: { ticks: { callback: v => '£' + v + 'k' } } } }
-});
-
-
-// ── ROADMAP: scale chart ──
-new Chart(document.getElementById('roadmapScaleChart'), {
-  type: 'bar',
-  data: {
-    labels: ['Phase 1: Do Now', 'Phase 2: Prove in Pilot', 'Phase 3: Scale'],
-    datasets: [{ label: 'Number of sites', data: [0, 20, 150], backgroundColor: [TEAL, TEAL + 'aa', TEAL + '55'], borderRadius: 6 }]
-  },
-  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => c.raw === 0 ? 'Data and planning phase' : c.raw + ' sites' } } }, scales: { y: { title: { display: true, text: 'Number of schools' } } } }
 });
 
 
